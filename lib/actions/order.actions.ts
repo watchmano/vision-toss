@@ -1,6 +1,6 @@
 'use server';
 
-import { isRedirectError } from 'next/dist/client/components/redirect';
+// import { isRedirectError } from 'next/dist/client/components/redirect';
 import { convertToPlainObject, formatError } from '../utils';
 import { auth } from '@/auth';
 import { getMyCart } from './cart.actions';
@@ -16,6 +16,7 @@ import { sendPurchaseReceipt } from '@/email';
 
 // Create order and create the order items
 export async function createOrder() {
+  
   try {
     const session = await auth();
     if (!session) throw new Error('User is not authenticated');
@@ -25,7 +26,7 @@ export async function createOrder() {
     if (!userId) throw new Error('User not found');
 
     const user = await getUserById(userId);
-
+    
     if (!cart || cart.items.length === 0) {
       return {
         success: false,
@@ -34,13 +35,13 @@ export async function createOrder() {
       };
     }
 
-    if (!user.address) {
-      return {
-        success: false,
-        message: 'No shipping address',
-        redirectTo: '/shipping-address',
-      };
-    }
+    // if (!user.address) {
+    //   return {
+    //     success: false,
+    //     message: 'No shipping address',
+    //     redirectTo: '/shipping-address',
+    //   };
+    // }
 
     if (!user.paymentMethod) {
       return {
@@ -65,17 +66,24 @@ export async function createOrder() {
     const insertedOrderId = await prisma.$transaction(async (tx) => {
       // Create order
       const insertedOrder = await tx.order.create({ data: order });
+      console.log('insertedOrder', insertedOrder);
       // Create order items from the cart items
       for (const item of cart.items as CartItem[]) {
-        await tx.orderItem.create({
+        console.log('item', item);
+        const res = await tx.orderItem.create({
           data: {
-            ...item,
-            price: item.price,
             orderId: insertedOrder.id,
-          },
+            productId: item.productId,
+            name: item.name,
+            qty: item.qty,
+            price: item.price,
+            image: item.image,
+            slug: item.slug,}
         });
+        console.log('res', res);
       }
       // Clear cart
+      console.log('passed');
       await tx.cart.update({
         where: { id: cart.id },
         data: {
@@ -86,7 +94,7 @@ export async function createOrder() {
           itemsPrice: 0,
         },
       });
-
+      
       return insertedOrder.id;
     });
 
@@ -98,7 +106,7 @@ export async function createOrder() {
       redirectTo: `/order/${insertedOrderId}`,
     };
   } catch (error) {
-    if (isRedirectError(error)) throw error;
+    // if (isRedirectError(error)) throw error;
     return { success: false, message: formatError(error) };
   }
 }

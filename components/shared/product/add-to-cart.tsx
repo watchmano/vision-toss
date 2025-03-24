@@ -27,8 +27,7 @@ const AddToCart = ({ cart, item }: { cart?: Cart; item: CartItem }) => {
     startTransition(async () => {
       const res = await addItemToCart({
         ...item,
-        qty: 1,
-        schedule: format(selectedDate, 'yyyy-MM-dd'),
+        qty: 1
       });
       console.log('res', res);
       if (!res.success) {

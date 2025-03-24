@@ -121,7 +121,7 @@ const PlaceOrderPage = async () => {
         <div>
           <Card>
             <CardContent className='p-4 gap-4 space-y-4'>
-              <div className='flex justify-between'>
+              {/* <div className='flex justify-between'>
                 <div>Items</div>
                 <div>{formatCurrency(cart.itemsPrice)}</div>
               </div>
@@ -132,10 +132,13 @@ const PlaceOrderPage = async () => {
               <div className='flex justify-between'>
                 <div>Shipping</div>
                 <div>{formatCurrency(cart.shippingPrice)}</div>
-              </div>
+              </div> */}
               <div className='flex justify-between'>
                 <div>Total</div>
-                <div>{formatCurrency(cart.totalPrice)}</div>
+                {/* <div>{formatCurrency(cart.totalPrice)}</div> */}
+                <div>                  {formatPriceKRW(String(cart.items.reduce((a, c) => a + Number(c.price), 0)))}
+                </div>
+                {/* <div>{formatCurrency(cart.totalPrice)}</div> */}
               </div>
               <PlaceOrderForm />
             </CardContent>

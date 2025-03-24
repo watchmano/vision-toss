@@ -41,7 +41,7 @@ export async function addItemToCart(data: CartItem) {
     
     // Parse and validate item
     const item = cartItemSchema.parse(data);
-    console.log('item', item);
+    
     // Find product in database
     const product = await prisma.product.findFirst({
       where: { id: item.productId },
@@ -58,7 +58,7 @@ export async function addItemToCart(data: CartItem) {
         ...calcPrice([item]),
       });
 
-      console.log('newCart', newCart);
+      
       // Add to database
       await prisma.cart.create({
         data: newCart,
