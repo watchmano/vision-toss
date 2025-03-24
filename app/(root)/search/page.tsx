@@ -128,7 +128,7 @@ const SearchPage = async (props: {
     <div className='grid md:grid-cols-5 md:gap-5'>
       <div className='filter-links'>
         {/* Category Links */}
-        <div className='text-xl mb-2 mt-3'>Department</div>
+        <div className='text-xl mb-2 mt-3'>Category</div>
         <div>
           <ul className='space-y-1'>
             <li>

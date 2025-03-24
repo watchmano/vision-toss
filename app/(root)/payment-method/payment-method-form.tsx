@@ -38,6 +38,7 @@ const PaymentMethodForm = ({
   const [isPending, startTransition] = useTransition();
 
   const onSubmit = async (values: z.infer<typeof paymentMethodSchema>) => {
+    
     startTransition(async () => {
       const res = await updateUserPaymentMethod(values);
 
@@ -48,8 +49,8 @@ const PaymentMethodForm = ({
         });
         return;
       }
-
       router.push('/place-order');
+
     });
   };
 

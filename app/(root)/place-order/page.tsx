@@ -17,11 +17,11 @@ import {
   TableRow,
 } from '@/components/ui/table';
 import Image from 'next/image';
-import { formatCurrency } from '@/lib/utils';
+import { formatCurrency, formatPriceKRW } from '@/lib/utils';
 import PlaceOrderForm from './place-order-form';
 
 export const metadata: Metadata = {
-  title: 'Place Order',
+  title: 'Confirm Schedule',
 };
 
 const PlaceOrderPage = async () => {
@@ -42,10 +42,10 @@ const PlaceOrderPage = async () => {
   return (
     <>
       <CheckoutSteps current={3} />
-      <h1 className='py-4 text-2xl'>Place Order</h1>
+      <h1 className='py-4 text-2xl'>Confirm Schedule</h1>
       <div className='grid md:grid-cols-3 md:gap-5'>
         <div className='md:col-span-2 overflow-x-auto space-y-4'>
-          <Card>
+          {/* <Card>
             <CardContent className='p-4 gap-4'>
               <h2 className='text-xl pb-4'>Shipping Address</h2>
               <p>{userAddress.fullName}</p>
@@ -59,7 +59,7 @@ const PlaceOrderPage = async () => {
                 </Link>
               </div>
             </CardContent>
-          </Card>
+          </Card> */}
 
           <Card>
             <CardContent className='p-4 gap-4'>
@@ -80,7 +80,8 @@ const PlaceOrderPage = async () => {
                 <TableHeader>
                   <TableRow>
                     <TableHead>Item</TableHead>
-                    <TableHead>Quantity</TableHead>
+                    {/* <TableHead>Quantity</TableHead> */}
+                    <TableHead>Shedule</TableHead>
                     <TableHead>Price</TableHead>
                   </TableRow>
                 </TableHeader>
@@ -101,11 +102,14 @@ const PlaceOrderPage = async () => {
                           <span className='px-2'>{item.name}</span>
                         </Link>
                       </TableCell>
-                      <TableCell>
+                      {/* <TableCell>
                         <span className='px-2'>{item.qty}</span>
+                      </TableCell> */}
+                      <TableCell className='text-left'>
+                        <span className='px-2'>{item.schedule}</span>
                       </TableCell>
-                      <TableCell className='text-right'>
-                        ${item.price}
+                      <TableCell className='text-left'>
+                        {formatPriceKRW(item.price)}
                       </TableCell>
                     </TableRow>
                   ))}

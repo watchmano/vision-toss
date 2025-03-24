@@ -103,6 +103,7 @@ const CartTable = ({ cart }: { cart?: Cart }) => {
                   {/* <TableHead className='text-center'>Quantity</TableHead> */}
                   <TableHead className='text-center'>Schedule</TableHead>
                   <TableHead className='text-right'>Price</TableHead>
+                  <TableHead className='text-right'>Delete</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
@@ -132,7 +133,10 @@ const CartTable = ({ cart }: { cart?: Cart }) => {
                       {item.schedule}
                     </TableCell>
                     <TableCell className='text-right'>
-                      {formatPriceKRW(cart.itemsPrice)}
+                      {formatPriceKRW(item.price)}
+                    </TableCell>
+                    <TableCell className='text-right'>
+                      <RemoveButton item={item} />
                     </TableCell>
                     {/* <TableCell className='text-right'>${item.price}</TableCell> */}
                   </TableRow>
@@ -144,17 +148,19 @@ const CartTable = ({ cart }: { cart?: Cart }) => {
           <Card>
             <CardContent className='p-4 gap-4'>
               <div className='pb-3 text-xl'>
-                Subtotal ({cart.items.reduce((a, c) => a + c.qty, 0)}):
+                Subtotal: 
+                {/* Subtotal ({cart.items.reduce((a, c) => a + c.qty, 0)}): */}
                 <span className='font-bold'>
                   {/* {formatCurrency(cart.itemsPrice)} */}
-                  {formatPriceKRW(cart.itemsPrice)}
+                  {formatPriceKRW(String(cart.items.reduce((a, c) => a + Number(c.price), 0)))}
+                  
                 </span>
               </div>
               <Button
                 className='w-full'
                 disabled={isPending}
                 onClick={() =>
-                  startTransition(() => router.push('/shipping-address'))
+                  startTransition(() => router.push('/payment-method'))
                 }
               >
                 {isPending ? (
