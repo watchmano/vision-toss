@@ -71,6 +71,20 @@ const sampleData = {
       banner: '/images/surgery/crosslinking-1.png',
     },
     {
+      name: "아이클린 리드클리너",
+      slug: "eye-clean-lid-cleaner",
+      category: "눈꺼풀 세정제",
+      description: "눈꺼풀과 속눈썹의 청결을 유지해주는 티트리 오일 성분의 세정제입니다.",
+      images: ["/images/surgery/eye-clean-lid-cleaner.png"],
+      price: 15000,
+      brand: "바이오옵틱스",
+      rating: 4.5,
+      numReviews: 25,
+      stock: 100,
+      isFeatured: false,
+      banner: null
+    },
+    {
       name: '백내장 수술',
       slug: 'cataract-surgery',
       category: '백내장 수술',
@@ -223,25 +237,9 @@ const sampleData = {
       stock: 9999,
       isFeatured: false,
       banner: '/images/surgery/artis-symbios.png',
-    },
-    {
-      name: "아이클린 리드클리너",
-      slug: "eye-clean-lid-cleaner",
-      category: "눈꺼풀 세정제",
-      description: "눈꺼풀과 속눈썹의 청결을 유지해주는 티트리 오일 성분의 세정제입니다.",
-      images: [
-        "/images/surgery/eye-clean-lid-cleaner.png"
-        
-      ],
-      price: 15000,
-      brand: "바이오옵틱스",
-      rating: 4.5,
-      numReviews: 25,
-      stock: 100,
-      isFeatured: false,
-      banner: null
     }
   ]
+  
   
 };
 
