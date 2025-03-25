@@ -22,6 +22,9 @@ const Header = () => {
             <span className='hidden lg:block font-bold text-2xl ml-3'>
               {APP_NAME}
             </span>
+            <span className='lg:hidden font-bold text-2xl ml-3'>
+              {APP_NAME}
+            </span>
           </Link>
         </div>
         <div className='hidden md:block'>

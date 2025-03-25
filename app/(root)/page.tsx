@@ -20,7 +20,7 @@ const Homepage = async () => {
       <ProductList data={latestProducts} title='' limit={4} />
       <ViewAllProductsButton />
       {/* <DealCountdown /> */}
-      {/* <IconBoxes /> */}
+      <IconBoxes />
     </>
   );
 };

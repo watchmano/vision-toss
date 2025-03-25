@@ -9,7 +9,7 @@ async function main() {
   await prisma.session.deleteMany();
   await prisma.verificationToken.deleteMany();
   await prisma.user.deleteMany();
-
+  console.log('product lentgh', sampleData.products.length);
   await prisma.product.createMany({ data: sampleData.products });
   const users = [];
   for (let i = 0; i < sampleData.users.length; i++) {

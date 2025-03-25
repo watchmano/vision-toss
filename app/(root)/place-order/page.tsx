@@ -136,10 +136,18 @@ const PlaceOrderPage = async () => {
               <div className='flex justify-between'>
                 <div>Total</div>
                 {/* <div>{formatCurrency(cart.totalPrice)}</div> */}
-                <div>                  {formatPriceKRW(String(cart.items.reduce((a, c) => a + Number(c.price), 0)))}
+                <div>
+                  {' '}
+                  {formatPriceKRW(
+                    String(cart.items.reduce((a, c) => a + Number(c.price), 0))
+                  )}
                 </div>
                 {/* <div>{formatCurrency(cart.totalPrice)}</div> */}
               </div>
+              <p className='text-sm text-muted-foreground pt-2'>
+                환불규정 : 예약전일 취소시 무료 환불 / 예약 당일 취소시 예약금의
+                90%만 환불.
+              </p>
               <PlaceOrderForm />
             </CardContent>
           </Card>
