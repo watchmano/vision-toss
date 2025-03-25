@@ -17,7 +17,7 @@ const IconBoxes = () => {
               <Phone size={18} />
               전화 문의
             </div>
-            <div className='text-sm text-gray-600'>02-3435-2025</div>
+            <div className='text-sm text-gray-600'>02-1234-5678</div>
           </div>
 
           {/* 오른쪽 첫 번째 항목 */}
@@ -48,7 +48,7 @@ const IconBoxes = () => {
               <UserSquare size={18} />
               대표자명
             </div>
-            <div className='text-sm text-gray-600'>오정우 (강남토스안과의원)</div>
+            <div className='text-sm text-gray-600'>황재윤 (강남토스안과의원)</div>
           </div>
         </CardContent>
       </Card>
