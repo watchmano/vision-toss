@@ -17,11 +17,11 @@ import {
   TableRow,
 } from '@/components/ui/table';
 import Image from 'next/image';
-import { formatCurrency } from '@/lib/utils';
+import { formatCurrency, formatPriceKRW } from '@/lib/utils';
 import PlaceOrderForm from './place-order-form';
 
 export const metadata: Metadata = {
-  title: 'Place Order',
+  title: 'Confirm Schedule',
 };
 
 const PlaceOrderPage = async () => {
@@ -42,10 +42,10 @@ const PlaceOrderPage = async () => {
   return (
     <>
       <CheckoutSteps current={3} />
-      <h1 className='py-4 text-2xl'>Place Order</h1>
+      <h1 className='py-4 text-2xl'>Confirm Schedule</h1>
       <div className='grid md:grid-cols-3 md:gap-5'>
         <div className='md:col-span-2 overflow-x-auto space-y-4'>
-          <Card>
+          {/* <Card>
             <CardContent className='p-4 gap-4'>
               <h2 className='text-xl pb-4'>Shipping Address</h2>
               <p>{userAddress.fullName}</p>
@@ -59,7 +59,7 @@ const PlaceOrderPage = async () => {
                 </Link>
               </div>
             </CardContent>
-          </Card>
+          </Card> */}
 
           <Card>
             <CardContent className='p-4 gap-4'>
@@ -75,12 +75,13 @@ const PlaceOrderPage = async () => {
 
           <Card>
             <CardContent className='p-4 gap-4'>
-              <h2 className='text-xl pb-4'>Order Items</h2>
+              <h2 className='text-xl pb-4'>Booked Surgery</h2>
               <Table>
                 <TableHeader>
                   <TableRow>
                     <TableHead>Item</TableHead>
-                    <TableHead>Quantity</TableHead>
+                    {/* <TableHead>Quantity</TableHead> */}
+                    <TableHead>Shedule</TableHead>
                     <TableHead>Price</TableHead>
                   </TableRow>
                 </TableHeader>
@@ -101,11 +102,14 @@ const PlaceOrderPage = async () => {
                           <span className='px-2'>{item.name}</span>
                         </Link>
                       </TableCell>
-                      <TableCell>
+                      {/* <TableCell>
                         <span className='px-2'>{item.qty}</span>
+                      </TableCell> */}
+                      <TableCell className='text-left'>
+                        <span className='px-2'>{item.schedule}</span>
                       </TableCell>
-                      <TableCell className='text-right'>
-                        ${item.price}
+                      <TableCell className='text-left'>
+                        {formatPriceKRW(item.price)}
                       </TableCell>
                     </TableRow>
                   ))}
@@ -117,7 +121,7 @@ const PlaceOrderPage = async () => {
         <div>
           <Card>
             <CardContent className='p-4 gap-4 space-y-4'>
-              <div className='flex justify-between'>
+              {/* <div className='flex justify-between'>
                 <div>Items</div>
                 <div>{formatCurrency(cart.itemsPrice)}</div>
               </div>
@@ -128,11 +132,22 @@ const PlaceOrderPage = async () => {
               <div className='flex justify-between'>
                 <div>Shipping</div>
                 <div>{formatCurrency(cart.shippingPrice)}</div>
-              </div>
+              </div> */}
               <div className='flex justify-between'>
                 <div>Total</div>
-                <div>{formatCurrency(cart.totalPrice)}</div>
+                {/* <div>{formatCurrency(cart.totalPrice)}</div> */}
+                <div>
+                  {' '}
+                  {formatPriceKRW(
+                    String(cart.items.reduce((a, c) => a + Number(c.price), 0))
+                  )}
+                </div>
+                {/* <div>{formatCurrency(cart.totalPrice)}</div> */}
               </div>
+              <p className='text-sm text-muted-foreground pt-2'>
+                환불규정 : 예약전일 취소시 무료 환불 / 예약 당일 취소시 예약금의
+                90%만 환불.
+              </p>
               <PlaceOrderForm />
             </CardContent>
           </Card>

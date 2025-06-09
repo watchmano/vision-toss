@@ -10,7 +10,7 @@ import {
   TableRow,
 } from '@/components/ui/table';
 import { Button } from '@/components/ui/button';
-import { formatCurrency, formatDateTime, formatId } from '@/lib/utils';
+import { formatCurrency, formatDateTime, formatId, formatPriceKRW } from '@/lib/utils';
 import { Order } from '@/types';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -157,7 +157,7 @@ const OrderDetailsTable = ({
               )}
             </CardContent>
           </Card>
-          <Card className='my-2'>
+          {/* <Card className='my-2'>
             <CardContent className='p-4 gap-4'>
               <h2 className='text-xl pb-4'>Shipping Address</h2>
               <p>{shippingAddress.fullName}</p>
@@ -173,10 +173,10 @@ const OrderDetailsTable = ({
                 <Badge variant='destructive'>Not Delivered</Badge>
               )}
             </CardContent>
-          </Card>
+          </Card> */}
           <Card>
             <CardContent className='p-4 gap-4'>
-              <h2 className='text-xl pb-4'>Order Items</h2>
+              <h2 className='text-xl pb-4'>Booked Surgery</h2>
               <Table>
                 <TableHeader>
                   <TableRow>
@@ -219,10 +219,12 @@ const OrderDetailsTable = ({
           <Card>
             <CardContent className='p-4 gap-4 space-y-4'>
               <div className='flex justify-between'>
-                <div>Items</div>
-                <div>{formatCurrency(itemsPrice)}</div>
+                <div>Total</div>
+                <div>{formatPriceKRW(itemsPrice)}</div>
+                
+
               </div>
-              <div className='flex justify-between'>
+              {/* <div className='flex justify-between'>
                 <div>Tax</div>
                 <div>{formatCurrency(taxPrice)}</div>
               </div>
@@ -233,7 +235,7 @@ const OrderDetailsTable = ({
               <div className='flex justify-between'>
                 <div>Total</div>
                 <div>{formatCurrency(totalPrice)}</div>
-              </div>
+              </div> */}
 
               {/* PayPal Payment */}
               {!isPaid && paymentMethod === 'PayPal' && (

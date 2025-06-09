@@ -56,7 +56,7 @@ export const cartItemSchema = z.object({
   slug: z.string().min(1, 'Slug is required'),
   qty: z.number().int().nonnegative('Quantity must be a positive number'),
   image: z.string().min(1, 'Image is required'),
-  schedule: z.string().optional(),
+  schedule: z.string().optional().nullable(),
   price: currency,
 });
 
@@ -68,6 +68,7 @@ export const insertCartSchema = z.object({
   taxPrice: currency,
   sessionCartId: z.string().min(1, 'Session cart id is required'),
   userId: z.string().optional().nullable(),
+  schedule: z.string().optional().nullable(),
 });
 
 // Schema for the shipping address

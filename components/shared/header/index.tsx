@@ -7,26 +7,29 @@ import Search from './search';
 
 const Header = () => {
   return (
-    <header className='w-full border-b'>
-      <div className='wrapper flex-between'>
-        <div className='flex-start'>
+    <header className='w-full border-b bg-white'>
+      <div className='wrapper flex-between items-center py-3'>
+        <div className='flex items-center'>
           <CategoryDrawer />
-          <Link href='/' className='flex-start ml-4'>
+          <Link href='/' className='flex items-center gap-3 ml-4'>
             <Image
-              src='/images/logo.png'
+              src='/images/logo.png' // 👁️ 실제 눈 이미지 경로로 변경
               alt={`${APP_NAME} logo`}
-              height={48}
-              width={48}
-              priority={true}
+              height={55}
+              width={55}
+              className='rounded-full object-cover'
+              priority
             />
-            <span className='hidden lg:block font-bold text-2xl ml-3'>
+            <span className='font-bold text-xl md:text-2xl text-gray-800'>
               {APP_NAME}
             </span>
           </Link>
         </div>
-        <div className='hidden md:block'>
+
+        <div className='hidden md:block w-[300px]'>
           <Search />
         </div>
+
         <Menu />
       </div>
     </header>

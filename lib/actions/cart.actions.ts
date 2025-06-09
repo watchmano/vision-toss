@@ -41,7 +41,7 @@ export async function addItemToCart(data: CartItem) {
     
     // Parse and validate item
     const item = cartItemSchema.parse(data);
-    console.log('item', item);
+    
     // Find product in database
     const product = await prisma.product.findFirst({
       where: { id: item.productId },
@@ -58,7 +58,7 @@ export async function addItemToCart(data: CartItem) {
         ...calcPrice([item]),
       });
 
-      console.log('newCart', newCart);
+      
       // Add to database
       await prisma.cart.create({
         data: newCart,
@@ -111,7 +111,7 @@ export async function addItemToCart(data: CartItem) {
         success: true,
         message: `${product.name} ${
           existItem ? 'updated in' : 'added to'
-        } cart`,
+        } booking list`,
       };
     }
   } catch (error) {
@@ -170,18 +170,20 @@ export async function removeItemFromCart(productId: string) {
       (x) => x.productId === productId
     );
     if (!exist) throw new Error('Item not found');
-
+    cart.items = (cart.items as CartItem[]).filter(
+      (x) => x.productId !== exist.productId
+    );
     // Check if only one in qty
-    if (exist.qty === 1) {
-      // Remove from cart
-      cart.items = (cart.items as CartItem[]).filter(
-        (x) => x.productId !== exist.productId
-      );
-    } else {
-      // Decrease qty
-      (cart.items as CartItem[]).find((x) => x.productId === productId)!.qty =
-        exist.qty - 1;
-    }
+    // if (exist.qty === 1) {
+    //   // Remove from cart
+    //   cart.items = (cart.items as CartItem[]).filter(
+    //     (x) => x.productId !== exist.productId
+    //   );
+    // } else {
+    //   // Decrease qty
+    //   (cart.items as CartItem[]).find((x) => x.productId === productId)!.qty =
+    //     exist.qty - 1;
+    // }
 
     // Update cart in database
     await prisma.cart.update({
