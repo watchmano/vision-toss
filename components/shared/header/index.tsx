@@ -4,6 +4,7 @@ import { APP_NAME } from '@/lib/constants';
 import Menu from './menu';
 import CategoryDrawer from './category-drawer';
 import Search from './search';
+import MegaMenu from './MegaMenu';
 
 const Header = () => {
   return (
@@ -29,9 +30,10 @@ const Header = () => {
         <div className='hidden md:block w-[300px]'>
           <Search />
         </div>
-
+        
         <Menu />
       </div>
+      <div><MegaMenu /></div>
     </header>
   );
 };
