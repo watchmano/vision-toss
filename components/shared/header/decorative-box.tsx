@@ -1,3 +1,7 @@
+'use client';
+
+import React from 'react';
+
 interface DecorativeBoxProps {
   name: string;
   price: string;
@@ -5,9 +9,11 @@ interface DecorativeBoxProps {
 
 export default function DecorativeBox({ name, price }: DecorativeBoxProps) {
   return (
-    <div className="p-4 text-left rounded-md transition hover:bg-gray-50">
-      <div className="font-semibold text-black mb-1">{name}</div>
-      <div className="text-sm text-gray-500">{price}원</div>
+    <div
+      className="p-4 transition-colors duration-200 hover:bg-gray-100 rounded-md"
+    >
+      <h3 className="text-sm font-semibold text-gray-900 mb-1">{name}</h3>
+      <p className="text-sm text-gray-500">{price}원</p>
     </div>
   );
 }
