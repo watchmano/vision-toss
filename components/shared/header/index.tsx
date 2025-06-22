@@ -4,7 +4,7 @@ import { APP_NAME } from '@/lib/constants';
 import Menu from './menu';
 import CategoryDrawer from './category-drawer';
 import Search from './search';
-import HeaderTabs from './tabs';
+import ProductsTabs from './tabs';
 
 import MegaMenu from './MegaMenu';
 const Header = () => {
@@ -34,8 +34,8 @@ const Header = () => {
         
         <Menu />
       </div>
-      <div><HeaderTabs/></div>
-      <div><MegaMenu/></div>
+      <div><ProductsTabs/></div>
+      {/* <div><MegaMenu/></div> */}
     </header>
   );
 };
