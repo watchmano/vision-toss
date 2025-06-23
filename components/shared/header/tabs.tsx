@@ -27,7 +27,8 @@ export default async function ProductsTabs() {
     
       <div>
       <CategoryTabs
-        categories={categories}
+      categories={categories.map((c) => c.category)}
+        // categories={categories}
         formatted={formatted}
         defaultCategory={defaultCategory}/>
       <MegaMenu
