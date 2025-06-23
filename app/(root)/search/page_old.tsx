@@ -5,15 +5,7 @@ import {
   getAllCategories,
 } from '@/lib/actions/product.actions';
 import Link from 'next/link';
-import {
-  LayoutDashboard,
-  ShoppingBag,
-  Mail,
-  User,
-  Settings,
-  LogOut,
-  Search,
-} from 'lucide-react';
+
 // const prices = [
 //   {
 //     name: '$1 to $50',
@@ -134,55 +126,82 @@ const SearchPage = async (props: {
 
   return (
     <div className='grid md:grid-cols-5 md:gap-5'>
-      <aside className='w-55 bg-white dark:bg-gray-900 h-screen p-5 shadow-md rounded-r-xl'>
-        {/* Title */}
-        <div className='mb-6'>
-          <h1 className='text-2xl font-bold text-gray-800 dark:text-white'>
-            Vision Toss
-          </h1>
+      <div className='filter-links'>
+        {/* Category Links */}
+        <div className='text-xl mb-2 mt-3'>Category</div>
+        <div>
+          <ul className='space-y-1'>
+            <li>
+              <Link
+                className={`${
+                  (category === 'all' || category === '') && 'font-bold'
+                }`}
+                href={getFilterUrl({ c: 'all' })}
+              >
+                Any
+              </Link>
+            </li>
+            {categories.map((x) => (
+              <li key={x.category}>
+                <Link
+                  className={`${category === x.category && 'font-bold'}`}
+                  href={getFilterUrl({ c: x.category })}
+                >
+                  {x.category}
+                </Link>
+              </li>
+            ))}
+          </ul>
         </div>
-
-        {/* Search */}
-        <div className='relative mb-6'>
-          <input
-            type='text'
-            placeholder='Search'
-            className='w-full pl-10 pr-4 py-2 text-sm rounded-md bg-gray-100 dark:bg-gray-800 text-gray-800 dark:text-white placeholder-gray-400 focus:outline-none'
-          />
-          <Search className='absolute left-3 top-2.5 h-5 w-5 text-gray-400' />
-        </div>
-
-        {/* 구분선 */}
-        <div className='border-t border-gray-200 dark:border-gray-700 mb-4'></div>
-
-        {/* Category List */}
-        <nav className='space-y-4'>
-          <Link
-            className='flex justify-between items-center px-1.5 py-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-md transition'
-            href={getFilterUrl({ c: 'all' })}
-          >
-            <div className='flex items-center gap-3 text-gray-700 dark:text-gray-200'>
-              전체
-            </div>
-          </Link>
-
-          {categories.map((x) => (
-            <Link
-              key={x.category}
-              href={getFilterUrl({ c: x.category })}
-              className='flex justify-between items-center px-1.5 py-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-md transition'
-            >
-              <div className='flex items-center gap-3 text-gray-700 dark:text-gray-200'>
-                {x.category}
-              </div>
-              <span className='bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-white px-2 py-0.5 text-xs font-medium rounded-full'>
-                {x._count}
-              </span>
-            </Link>
-          ))}
-        </nav>
-      </aside>
-
+        {/* Price Links */}
+        {/* <div className='text-xl mb-2 mt-8'>Price</div>
+        <div>
+          <ul className='space-y-1'>
+            <li>
+              <Link
+                className={`${price === 'all' && 'font-bold'}`}
+                href={getFilterUrl({ p: 'all' })}
+              >
+                Any
+              </Link>
+            </li>
+            {prices.map((p) => (
+              <li key={p.value}>
+                <Link
+                  className={`${price === p.value && 'font-bold'}`}
+                  href={getFilterUrl({ p: p.value })}
+                >
+                  {p.name}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div> */}
+        {/* Rating Links */}
+        {/* <div className='text-xl mb-2 mt-8'>Customer Ratings</div>
+        <div>
+          <ul className='space-y-1'>
+            <li>
+              <Link
+                className={`${rating === 'all' && 'font-bold'}`}
+                href={getFilterUrl({ r: 'all' })}
+              >
+                Any
+              </Link>
+            </li>
+            {ratings.map((r) => (
+              <li key={r}>
+                <Link
+                  className={`${rating === r.toString() && 'font-bold'}`}
+                  href={getFilterUrl({ r: `${r}` })}
+                >
+                  {`${r} stars & up`}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div> */}
+      </div>
       <div className='md:col-span-4 space-y-4'>
         {/* <div className='flex-between flex-col md:flex-row my-4'>
           <div className='flex items-center'>
@@ -213,7 +232,7 @@ const SearchPage = async (props: {
             ))}
           </div>
         </div> */}
-        <div className='grid grid-cols-1 gap-3 md:grid-cols-3'>
+        <div className='grid grid-cols-1 gap-4 md:grid-cols-3'>
           {products.data.length === 0 && <div>No products found</div>}
           {products.data.map((product) => (
             <ProductCard key={product.id} product={product} />

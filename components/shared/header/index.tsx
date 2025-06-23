@@ -6,7 +6,6 @@ import CategoryDrawer from './category-drawer';
 import Search from './search';
 import ProductsTabs from './tabs';
 
-import MegaMenu from './MegaMenu';
 const Header = () => {
   return (
     <header className='w-full border-b bg-white'>
@@ -31,11 +30,12 @@ const Header = () => {
         <div className='hidden md:block w-[300px]'>
           <Search />
         </div>
-        
+
         <Menu />
       </div>
-      <div><ProductsTabs/></div>
-      {/* <div><MegaMenu/></div> */}
+      <div>
+        <ProductsTabs />
+      </div>
     </header>
   );
 };

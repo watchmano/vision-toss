@@ -5,7 +5,7 @@ import Link from 'next/link';
 
 type MenuKey = string | null;
 
-const MegaMenu = (props: {
+const CategoryTabsMobile = (props: {
   products?: Record<string, { name: string; price: string; slug: string }[]>;
   categories?: string[];
   defaultCategory?: string;
@@ -176,4 +176,4 @@ const MegaMenu = (props: {
   );
 };
 
-export default MegaMenu;
+export default CategoryTabsMobile;
