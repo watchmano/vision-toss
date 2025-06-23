@@ -2,6 +2,8 @@
 
 // 수정된 ProductsTabs 컴포넌트 - MegaMenu 스타일 반영
 import { Tabs } from '@radix-ui/themes';
+import { Cross2Icon, PlusIcon } from '@radix-ui/react-icons';
+
 import { useState } from 'react';
 import Link from 'next/link';
 
@@ -18,16 +20,25 @@ export default function CategoryTabs(props: {
 
   return (
     // add mega menu with props of products and categories
-<div className="relative">
-      <button
-        onClick={() => setVisible(false)}
-        className='absolute top-2 right-4 z-10 text-xl text-gray-500 hover:text-black dark:hover:text-white'
-        aria-label='닫기'
-      >
-        &times;
-      </button>
+    <div className='relative hidden md:block'>
+      {!visible && (
+        <button
+          onClick={() => setVisible(true)}
+          className="absolute top-2 right-4 z-10 text-sm px-3 py-1 text-gray-800 dark:text-white rounded hover:bg-gray-300 dark:hover:bg-gray-600 transition"
+        >
+          <PlusIcon/>
+        </button>
+      )}
+      {visible && (
+        <button
+          onClick={() => setVisible(false)}
+          className="absolute top-2 right-4 z-10 text-sm px-3 py-1 text-gray-800 dark:text-white rounded hover:bg-gray-300 dark:hover:bg-gray-600 transition"
+        >
+          <Cross2Icon/>
+        </button>
+      )}
       <Tabs.Root defaultValue={defaultCategory}>
-        <div className='border-t w-[100vw] border-[#e2e8f0] bg-white dark:border-gray-600 dark:bg-gray-900 hidden md:block'>
+        <div className='border-t w-[100vw] bg-white dark:border-gray-600 dark:bg-gray-900 '>
           <Tabs.List
             justify='center'
             wrap='wrap'

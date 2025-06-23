@@ -56,7 +56,7 @@ const MegaMenu = (props: {
       {!isMobileMenuOpen && (
         <button
           onClick={handleOpenMenu}
-          className='md:hidden z-50 inline-flex items-center p-2 text-sm text-gray-500 rounded-lg hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700'
+          className='md:hidden z-50 inline-flex items-center p-2 text-sm text-gray-500 rounded-lg hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700  py-4'
         >
           <svg
             className='w-6 h-6'
