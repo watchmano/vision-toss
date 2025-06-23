@@ -134,7 +134,7 @@ const SearchPage = async (props: {
 
   return (
     <div className='grid md:grid-cols-5 md:gap-5'>
-      <aside className='w-55 bg-white dark:bg-gray-900 h-screen p-5 shadow-md rounded-r-xl'>
+      <aside className='hidden sm:block w-55 bg-white dark:bg-gray-900 h-screen p-5 shadow-md rounded-r-xl'>
         {/* Title */}
         <div className='mb-6'>
           <h1 className='text-2xl font-bold text-gray-800 dark:text-white'>

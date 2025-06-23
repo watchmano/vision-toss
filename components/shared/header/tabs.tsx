@@ -45,13 +45,12 @@ export default async function ProductsTabs() {
         formatted={formatted}
         defaultCategory={defaultCategory}
       />
-      <CategoryTabsMobile
+      {/* <CategoryTabsMobile
         products={formatted}
         categories={categories.map((c) => c.category)}
         defaultCategory={defaultCategory}
-      />
-      <div>
-      </div>
+      /> */}
+      <div></div>
     </div>
   );
 }
