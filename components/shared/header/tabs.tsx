@@ -34,10 +34,6 @@ export default async function ProductsTabs() {
 
   const defaultCategory = categories[0]?.category || '';
 
-  categories.forEach((cat) => {
-    cat.category;
-  });
-
   return (
     <div>
       <CategoryTabsPc

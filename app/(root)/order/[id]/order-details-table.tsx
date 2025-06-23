@@ -10,7 +10,12 @@ import {
   TableRow,
 } from '@/components/ui/table';
 import { Button } from '@/components/ui/button';
-import { formatCurrency, formatDateTime, formatId, formatPriceKRW } from '@/lib/utils';
+import {
+  formatCurrency,
+  formatDateTime,
+  formatId,
+  formatPriceKRW,
+} from '@/lib/utils';
 import { Order } from '@/types';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -221,8 +226,6 @@ const OrderDetailsTable = ({
               <div className='flex justify-between'>
                 <div>Total</div>
                 <div>{formatPriceKRW(itemsPrice)}</div>
-                
-
               </div>
               {/* <div className='flex justify-between'>
                 <div>Tax</div>
