@@ -1,4 +1,3 @@
-
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
@@ -7,7 +6,7 @@ import Link from 'next/link';
 type MenuKey = string | null;
 
 const MegaMenu = (props: {
-  products?: Record<string, { name: string; price: string }[]>;
+  products?: Record<string, { name: string; price: string; slug: string }[]>;
   categories?: string[];
   defaultCategory?: string;
 }) => {
@@ -36,7 +35,8 @@ const MegaMenu = (props: {
       const target = event.target as Node;
 
       const clickedInside =
-        wrapperRef.current?.contains(target) || dropdownRef.current?.contains(target);
+        wrapperRef.current?.contains(target) ||
+        dropdownRef.current?.contains(target);
 
       if (!clickedInside) {
         handleCloseMenu();
@@ -51,7 +51,7 @@ const MegaMenu = (props: {
   }, [isMobileMenuOpen]);
 
   return (
-    <nav className='border-t border-[#e2e8f0] bg-white dark:border-gray-600 dark:bg-gray-900 relative'>
+    <nav className='border-t border-[#e2e8f0] bg-white dark:border-gray-600 dark:bg-gray-900 relative block md:hidden'>
       {/* 모바일 햄버거 버튼 - 열릴 때만 보여줌 */}
       {!isMobileMenuOpen && (
         <button
@@ -65,7 +65,11 @@ const MegaMenu = (props: {
             strokeWidth={2}
             viewBox='0 0 24 24'
           >
-            <path strokeLinecap='round' strokeLinejoin='round' d='M4 6h16M4 12h16M4 18h16' />
+            <path
+              strokeLinecap='round'
+              strokeLinejoin='round'
+              d='M4 6h16M4 12h16M4 18h16'
+            />
           </svg>
         </button>
       )}
@@ -75,28 +79,28 @@ const MegaMenu = (props: {
         ref={wrapperRef}
         className={`${isMobileMenuOpen ? 'block' : 'hidden'} md:flex md:items-center md:justify-center`}
       >
-        <div className='mx-auto max-w-screen-xl p-4'>
-              <div className="flex justify-end mb-4">
-      <button
-        onClick={handleCloseMenu}
-        className="md:hidden text-gray-600 dark:text-gray-300 hover:text-red-500"
-        aria-label="Close menu"
-      >
-        <svg
-          className="w-6 h-6"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth={2}
-          viewBox="0 0 24 24"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            d="M6 18L18 6M6 6l12 12"
-          />
-        </svg>
-      </button>
-    </div>
+        <div className='mx-auto p-4'>
+          <div className='flex justify-end mb-4'>
+            <button
+              onClick={handleCloseMenu}
+              className='md:hidden text-gray-600 dark:text-gray-300 hover:text-red-500'
+              aria-label='Close menu'
+            >
+              <svg
+                className='w-6 h-6'
+                fill='none'
+                stroke='currentColor'
+                strokeWidth={2}
+                viewBox='0 0 24 24'
+              >
+                <path
+                  strokeLinecap='round'
+                  strokeLinejoin='round'
+                  d='M6 18L18 6M6 6l12 12'
+                />
+              </svg>
+            </button>
+          </div>
           <ul className='flex flex-col mt-4 font-medium md:flex-row md:mt-0 md:space-x-8 rtl:space-x-reverse'>
             <li>
               <Link
@@ -155,10 +159,12 @@ const MegaMenu = (props: {
                     key={i}
                     className='p-3 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors cursor-pointer'
                   >
-                    <div className='font-semibold'>{item.name}</div>
-                    <span className='text-sm text-gray-500 dark:text-gray-400'>
-                      {item.price}원
-                    </span>
+                    <Link key={i} href={`/product/${item.slug}`}>
+                      <div className='font-semibold'>{item.name}</div>
+                      <span className='text-sm text-gray-500 dark:text-gray-400'>
+                        {item.price}원
+                      </span>
+                    </Link>
                   </div>
                 ))}
               </div>
