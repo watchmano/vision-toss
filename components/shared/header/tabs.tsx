@@ -6,6 +6,7 @@ import CategoryTabsMobile from './category-tabs-mobile';
 
 import CategoryTabsPc from './category-tabs-pc';
 export default async function ProductsTabs() {
+  console.log('ProductsTabs');
   const products = await getAllProducts({
     query: 'all',
     category: 'all',
