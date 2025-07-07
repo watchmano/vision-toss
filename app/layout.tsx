@@ -24,6 +24,7 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  // This is the root layout for the application.
   return (
     <html lang='en' suppressHydrationWarning>
       <body className={`${inter.className} antialiased`}>
